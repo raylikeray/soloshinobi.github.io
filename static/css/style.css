@@ -1,0 +1,761 @@
+/* ==========================================================================
+   Solo Shinobi — System UI Stylesheet
+   Consolidated from approved mockups (homepage-final-v3 + chapter-final)
+   BEM naming throughout
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   Reset
+   -------------------------------------------------------------------------- */
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* --------------------------------------------------------------------------
+   Custom Properties
+   -------------------------------------------------------------------------- */
+:root {
+  /* Backgrounds */
+  --bg-primary: #06060f;
+
+  /* Accent colours */
+  --accent-blue:   #4d7cff;
+  --accent-purple: #7b5cff;
+  --accent-violet: #a855f7;
+
+  /* Text */
+  --text-primary:   #e2e8ff;
+  --text-body:      rgba(210, 215, 235, 0.85);
+  --text-secondary: rgba(200, 210, 255, 0.5);
+  --text-muted:     rgba(200, 210, 255, 0.25);
+
+  /* Borders */
+  --border-glow:   rgba(77, 124, 255, 0.3);
+  --border-subtle: rgba(77, 124, 255, 0.1);
+  --border-faint:  rgba(77, 124, 255, 0.08);
+
+  /* Glows */
+  --glow-blue: rgba(77, 124, 255, 0.15);
+
+  /* Typography */
+  --font-mono:  'Courier New', Courier, monospace;
+  --font-serif: Georgia, 'Times New Roman', Times, serif;
+  --font-sans:  system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+}
+
+/* --------------------------------------------------------------------------
+   Base
+   -------------------------------------------------------------------------- */
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  font-family: var(--font-sans);
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+  position: relative;
+  overflow-x: hidden;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* --------------------------------------------------------------------------
+   Particles
+   -------------------------------------------------------------------------- */
+.particles {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  overflow: hidden;
+}
+
+.particle {
+  position: absolute;
+  border-radius: 50%;
+  animation: float 6s ease-in-out infinite;
+}
+
+.particle--1 {
+  top: 20%; left: 15%;
+  width: 3px; height: 3px;
+  background: var(--accent-blue);
+  box-shadow: 0 0 8px var(--accent-blue);
+  animation-delay: 0s;
+}
+.particle--2 {
+  top: 60%; left: 75%;
+  width: 2px; height: 2px;
+  background: var(--accent-purple);
+  box-shadow: 0 0 6px var(--accent-purple);
+  animation-delay: 2s;
+}
+.particle--3 {
+  top: 40%; left: 50%;
+  width: 4px; height: 4px;
+  background: var(--accent-blue);
+  box-shadow: 0 0 12px var(--accent-blue);
+  animation-delay: 4s;
+}
+.particle--4 {
+  top: 80%; left: 30%;
+  width: 2px; height: 2px;
+  background: var(--accent-violet);
+  box-shadow: 0 0 6px var(--accent-violet);
+  animation-delay: 1s;
+}
+.particle--5 {
+  top: 15%; left: 85%;
+  width: 2px; height: 2px;
+  background: var(--accent-blue);
+  box-shadow: 0 0 6px var(--accent-blue);
+  animation-delay: 3s;
+}
+.particle--6 {
+  top: 70%; left: 10%;
+  width: 3px; height: 3px;
+  background: var(--accent-purple);
+  box-shadow: 0 0 8px var(--accent-purple);
+  animation-delay: 5s;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0) scale(1);   opacity: 0.4; }
+  50%       { transform: translateY(-20px) scale(1.3); opacity: 0.8; }
+}
+
+/* --------------------------------------------------------------------------
+   Navigation
+   -------------------------------------------------------------------------- */
+.nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 32px;
+  border-bottom: 1px solid var(--border-subtle);
+  position: relative;
+  z-index: 10;
+}
+
+.nav__logo {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* SYS:// prefix — bright, visible */
+.nav__sys {
+  font-family: var(--font-mono);
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 9px;
+  letter-spacing: 2px;
+}
+
+/* Site title — full white */
+.nav__title {
+  color: #ffffff;
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 1px;
+}
+
+/* Homepage nav links */
+.nav__links {
+  display: flex;
+  gap: 24px;
+  font-size: 11px;
+  letter-spacing: 1.5px;
+  color: var(--text-secondary);
+  align-items: center;
+}
+
+.nav__links a {
+  transition: color 0.2s;
+}
+
+.nav__links a:hover {
+  color: var(--accent-blue);
+}
+
+.nav__links--active {
+  color: rgba(77, 124, 255, 0.8) !important;
+}
+
+.nav__latest {
+  padding: 4px 12px;
+  border: 1px solid var(--border-glow);
+  border-radius: 4px;
+  color: rgba(77, 124, 255, 0.8) !important;
+  transition: all 0.2s ease;
+}
+
+.nav__latest:hover {
+  background: rgba(77, 124, 255, 0.1);
+  box-shadow: 0 0 12px var(--glow-blue);
+}
+
+/* Chapter page nav links */
+.nav__chapter-links {
+  display: flex;
+  gap: 20px;
+  font-size: 10px;
+  letter-spacing: 1.5px;
+  color: var(--text-secondary);
+  align-items: center;
+}
+
+.nav__chapter-links a {
+  transition: color 0.2s;
+}
+
+.nav__chapter-links a:hover {
+  color: var(--accent-blue);
+}
+
+/* --------------------------------------------------------------------------
+   Hero
+   -------------------------------------------------------------------------- */
+.hero {
+  text-align: center;
+  padding: 32px 32px 24px;
+  position: relative;
+  z-index: 1;
+  min-height: 45vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.hero__glow {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 500px;
+  height: 300px;
+  background: radial-gradient(ellipse, rgba(77, 124, 255, 0.1), transparent);
+  pointer-events: none;
+}
+
+/* [ SYSTEM INITIALIZED ] — brighter blue */
+.hero__system-label {
+  font-family: var(--font-mono);
+  color: rgba(77, 124, 255, 0.7);
+  font-size: 10px;
+  letter-spacing: 5px;
+  margin-bottom: 16px;
+  animation: pulse 4s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 0.6; }
+  50%       { opacity: 1; }
+}
+
+.hero__title {
+  color: #f0f0ff;
+  font-size: 42px;
+  font-weight: bold;
+  letter-spacing: 8px;
+  text-shadow: 0 0 40px rgba(77, 124, 255, 0.15), 0 0 80px rgba(77, 124, 255, 0.05);
+}
+
+.hero__divider {
+  width: 140px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(77, 124, 255, 0.5), transparent);
+  margin: 18px auto;
+}
+
+.hero__subtitle {
+  color: var(--text-secondary);
+  font-size: 13px;
+  letter-spacing: 3px;
+}
+
+/* --------------------------------------------------------------------------
+   About Box  (no PREMISE label — just centred prose)
+   -------------------------------------------------------------------------- */
+.about {
+  max-width: 520px;
+  margin: 0 auto 40px;
+  padding: 20px 24px;
+  background: rgba(13, 17, 41, 0.6);
+  border: 1px solid rgba(77, 124, 255, 0.12);
+  border-radius: 8px;
+  position: relative;
+  z-index: 1;
+  backdrop-filter: blur(8px);
+}
+
+.about__text {
+  color: rgba(210, 215, 240, 0.8);
+  font-size: 14px;
+  line-height: 1.8;
+  font-family: var(--font-serif);
+  text-align: center;
+}
+
+/* --------------------------------------------------------------------------
+   Table of Contents (TOC)
+   -------------------------------------------------------------------------- */
+.toc {
+  padding: 0 32px 40px;
+  max-width: 800px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+}
+
+/* "BOOK ONE" header row */
+.toc__book-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+/* BOOK ONE label — brighter blue */
+.toc__book-label {
+  font-family: var(--font-mono);
+  color: rgba(77, 124, 255, 0.6);
+  font-size: 9px;
+  letter-spacing: 4px;
+  white-space: nowrap;
+}
+
+.toc__book-line {
+  flex: 1;
+  height: 1px;
+  background: var(--border-subtle);
+}
+
+/* Arc block */
+.toc__arc {
+  margin-bottom: 24px;
+}
+
+.toc__arc-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 10px;
+  margin-left: 2px;
+}
+
+.toc__arc-bar {
+  width: 4px;
+  height: 18px;
+  border-radius: 2px;
+}
+
+/* Arc label — 0.6–0.7 opacity range */
+.toc__arc-label {
+  font-family: var(--font-mono);
+  color: rgba(77, 124, 255, 0.65);
+  font-size: 9px;
+  letter-spacing: 3px;
+}
+
+.toc__arc-name {
+  color: #c8d2ff;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 1px;
+}
+
+/* Chapter list */
+.toc__chapters {
+  margin-left: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.toc__chapter {
+  display: flex;
+  align-items: center;
+  padding: 12px 16px;
+  border-radius: 6px;
+  background: rgba(77, 124, 255, 0.03);
+  border: 1px solid rgba(77, 124, 255, 0.06);
+  cursor: pointer;
+  transition: all 0.25s ease;
+  text-decoration: none;
+}
+
+.toc__chapter:hover {
+  background: rgba(77, 124, 255, 0.08);
+  border-color: var(--border-glow);
+  box-shadow: 0 0 20px rgba(77, 124, 255, 0.06);
+  transform: translateX(4px);
+}
+
+/* CH.001 number — brighter blue */
+.toc__chapter-num {
+  font-family: var(--font-mono);
+  color: rgba(77, 124, 255, 0.65);
+  font-size: 10px;
+  width: 55px;
+  flex-shrink: 0;
+  letter-spacing: 1px;
+}
+
+.toc__chapter-title {
+  color: rgba(220, 225, 255, 0.8);
+  font-size: 14px;
+  flex: 1;
+}
+
+.toc__chapter:hover .toc__chapter-title {
+  color: var(--text-primary);
+}
+
+/* Word count — brighter */
+.toc__chapter-words {
+  color: rgba(200, 210, 255, 0.45);
+  font-size: 10px;
+  flex-shrink: 0;
+  font-family: var(--font-mono);
+  letter-spacing: 0.5px;
+}
+
+/* --------------------------------------------------------------------------
+   Chapter Page
+   -------------------------------------------------------------------------- */
+.chapter {
+  max-width: 680px;
+  margin: 0 auto;
+  padding: 48px 24px 0;
+  position: relative;
+  z-index: 1;
+}
+
+/* Chapter header */
+.chapter__header {
+  text-align: center;
+  margin-bottom: 32px;
+}
+
+/* Arc label — 0.6 opacity */
+.chapter__arc-label {
+  font-family: var(--font-mono);
+  color: rgba(77, 124, 255, 0.6);
+  font-size: 9px;
+  letter-spacing: 4px;
+  margin-bottom: 6px;
+}
+
+/* Chapter number row with flanking lines */
+.chapter__number-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  margin-bottom: 12px;
+}
+
+.chapter__number-line--left {
+  width: 40px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(77, 124, 255, 0.3));
+}
+
+.chapter__number-line--right {
+  width: 40px;
+  height: 1px;
+  background: linear-gradient(90deg, rgba(77, 124, 255, 0.3), transparent);
+}
+
+/* CH.001 — 0.7 opacity */
+.chapter__number {
+  font-family: var(--font-mono);
+  color: rgba(77, 124, 255, 0.7);
+  font-size: 11px;
+  letter-spacing: 3px;
+}
+
+.chapter__title {
+  color: #e8ecff;
+  font-size: 26px;
+  font-weight: 600;
+  letter-spacing: 2px;
+}
+
+.chapter__meta {
+  margin-top: 12px;
+  color: rgba(200, 210, 255, 0.45);
+  font-size: 11px;
+  letter-spacing: 1px;
+}
+
+.chapter__divider {
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(77, 124, 255, 0.15), transparent);
+  margin-bottom: 32px;
+}
+
+/* --------------------------------------------------------------------------
+   Chapter Body (prose)
+   -------------------------------------------------------------------------- */
+.chapter__body {
+  color: var(--text-body);
+  font-size: 15.5px;
+  line-height: 1.85;
+  font-family: var(--font-serif);
+}
+
+.chapter__body p {
+  margin-bottom: 1.4em;
+  text-indent: 2em;
+}
+
+.chapter__body p:first-child {
+  text-indent: 0;
+}
+
+.chapter__body em {
+  color: rgba(77, 124, 255, 0.9);
+  font-style: italic;
+}
+
+.chapter__body strong {
+  color: var(--text-primary);
+  font-weight: 600;
+}
+
+/* --------------------------------------------------------------------------
+   System Window (in-story UI notification box)
+   -------------------------------------------------------------------------- */
+.system-window {
+  max-width: 420px;
+  margin: 28px auto;
+  background: rgba(13, 17, 41, 0.7);
+  border: 1px solid rgba(77, 124, 255, 0.25);
+  border-radius: 6px;
+  padding: 20px 24px;
+  box-shadow: 0 0 25px rgba(77, 124, 255, 0.06),
+              inset 0 1px 0 rgba(255, 255, 255, 0.03);
+}
+
+.system-window__header {
+  font-family: var(--font-mono);
+  color: rgba(77, 124, 255, 0.6);
+  font-size: 9px;
+  letter-spacing: 3px;
+  margin-bottom: 10px;
+}
+
+.system-window__divider {
+  width: 100%;
+  height: 1px;
+  background: rgba(77, 124, 255, 0.15);
+  margin-bottom: 12px;
+}
+
+.system-window__content {
+  color: #c8d2ff;
+  font-size: 14px;
+  line-height: 1.7;
+  font-family: var(--font-mono);
+}
+
+/* Value highlight (stats, numbers) */
+.system-window__content .val {
+  color: var(--accent-blue);
+}
+
+/* Dimmed secondary text */
+.system-window__content .dim {
+  color: rgba(200, 210, 255, 0.5);
+}
+
+/* Action prompts — [ACCEPT] / [DECLINE] */
+.system-window__content .action {
+  color: rgba(77, 124, 255, 0.6);
+  font-size: 12px;
+}
+
+/* --------------------------------------------------------------------------
+   Chapter End marker
+   -------------------------------------------------------------------------- */
+.chapter__end {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  margin: 40px 0 32px;
+}
+
+.chapter__end-line--left {
+  width: 60px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(77, 124, 255, 0.3));
+}
+
+.chapter__end-line--right {
+  width: 60px;
+  height: 1px;
+  background: linear-gradient(90deg, rgba(77, 124, 255, 0.3), transparent);
+}
+
+.chapter__end-label {
+  font-family: var(--font-mono);
+  color: rgba(77, 124, 255, 0.4);
+  font-size: 10px;
+  letter-spacing: 3px;
+}
+
+/* --------------------------------------------------------------------------
+   Chapter Navigation (prev / TOC / next)
+   -------------------------------------------------------------------------- */
+.chapter-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 24px 48px;
+  border-top: 1px solid var(--border-faint);
+  max-width: 680px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+}
+
+.chapter-nav__link {
+  font-size: 12px;
+  color: var(--text-secondary);
+  letter-spacing: 1px;
+  transition: color 0.2s ease;
+}
+
+.chapter-nav__link:hover {
+  color: var(--accent-blue);
+}
+
+/* "NEXT CHAPTER →" button style */
+.chapter-nav__link--next {
+  padding: 8px 20px;
+  border: 1px solid rgba(77, 124, 255, 0.25);
+  border-radius: 4px;
+  color: rgba(77, 124, 255, 0.8);
+  transition: all 0.2s ease;
+}
+
+.chapter-nav__link--next:hover {
+  background: rgba(77, 124, 255, 0.1);
+  box-shadow: 0 0 12px var(--glow-blue);
+}
+
+/* Greyed-out when no prev/next exists */
+.chapter-nav__link--disabled {
+  opacity: 0.3;
+  pointer-events: none;
+}
+
+/* --------------------------------------------------------------------------
+   Footer
+   -------------------------------------------------------------------------- */
+.footer {
+  padding: 28px 32px;
+  border-top: 1px solid var(--border-faint);
+  text-align: center;
+  position: relative;
+  z-index: 1;
+}
+
+.footer__text {
+  font-family: var(--font-mono);
+  color: rgba(77, 124, 255, 0.2);
+  font-size: 9px;
+  letter-spacing: 2px;
+}
+
+/* --------------------------------------------------------------------------
+   Responsive — mobile (≤ 768px)
+   -------------------------------------------------------------------------- */
+@media (max-width: 768px) {
+  /* Nav */
+  .nav {
+    padding: 12px 16px;
+    flex-direction: column;
+    gap: 12px;
+  }
+  .nav__links {
+    gap: 16px;
+    font-size: 10px;
+  }
+  .nav__chapter-links {
+    gap: 14px;
+    font-size: 9px;
+  }
+
+  /* Hero */
+  .hero {
+    padding: 24px 16px 20px;
+    min-height: 40vh;
+  }
+  .hero__title {
+    font-size: 28px;
+    letter-spacing: 5px;
+  }
+  .hero__subtitle {
+    font-size: 11px;
+    letter-spacing: 2px;
+  }
+
+  /* About */
+  .about {
+    margin-left: 16px;
+    margin-right: 16px;
+  }
+  .about__text {
+    font-size: 13px;
+  }
+
+  /* TOC */
+  .toc {
+    padding: 0 16px 32px;
+  }
+  .toc__chapter {
+    padding: 10px 12px;
+  }
+  .toc__chapter-words {
+    display: none;
+  }
+
+  /* Chapter page */
+  .chapter {
+    padding: 32px 16px 0;
+  }
+  .chapter__title {
+    font-size: 20px;
+    letter-spacing: 1px;
+  }
+  .chapter__body {
+    font-size: 14.5px;
+  }
+  .chapter__body p {
+    text-indent: 1.5em;
+  }
+
+  /* System window */
+  .system-window {
+    max-width: 100%;
+    padding: 16px 18px;
+  }
+
+  /* Chapter nav */
+  .chapter-nav {
+    padding: 16px 16px 36px;
+  }
+}
