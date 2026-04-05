@@ -1,11 +1,11 @@
 <nav class="nav">
-  <a href="/" class="nav__logo">
+  <a href="{{ "/" | relURL }}" class="nav__logo">
     <span class="nav__sys">SYS://</span>
     <span class="nav__title">SOLO SHINOBI</span>
   </a>
   <div class="nav__links">
-    <a href="/" class="{{ if .IsHome }}nav__links--active{{ end }}">HOME</a>
-    <a href="/#about">ABOUT</a>
+    <a href="{{ "/" | relURL }}" class="{{ if .IsHome }}nav__links--active{{ end }}">HOME</a>
+    <a href="{{ "/" | relURL }}#about">ABOUT</a>
     {{ $chapters := where .Site.RegularPages "Section" "chapters" }}
     {{ if $chapters }}
       {{ $latest := index (sort $chapters "Params.chapter_number" "desc") 0 }}
