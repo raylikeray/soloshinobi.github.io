@@ -1,0 +1,17 @@
+- name: "Awakening"
+  book: 1
+  order: 1
+  color_from: "#4d7cff"
+  color_to: "#5a8aff"
+
+- name: "The Nara Compound"
+  book: 1
+  order: 2
+  color_from: "#5a6fff"
+  color_to: "#7b5cff"
+
+- name: "Academy Days"
+  book: 1
+  order: 3
+  color_from: "#7b5cff"
+  color_to: "#a855f7"

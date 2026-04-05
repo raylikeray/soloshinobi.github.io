@@ -1,0 +1,26 @@
+baseURL = "https://soloshinobi.github.io/"
+languageCode = "en-us"
+title = "Solo Shinobi"
+theme = ""
+
+[params]
+  tagline = "A Solo Leveling × Naruto Web Serial"
+  premise = "Reborn as Shikamaru Nara's twin brother with the Shadow Monarch System. In a world of shinobi, one player has a different set of rules."
+  author = "Ray"
+
+[params.nav]
+  home = "HOME"
+  about = "ABOUT"
+  latest = "LATEST CH. →"
+
+[markup]
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = true
+
+[outputs]
+  home = ["HTML"]
+
+[taxonomies]
+
+[menu]
