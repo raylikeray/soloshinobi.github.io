@@ -1,0 +1,7 @@
+<div class="system-window">
+  <div class="system-window__header">⟐ {{ .Get "title" | default "SYSTEM" }}</div>
+  <div class="system-window__divider"></div>
+  <div class="system-window__content">
+    {{ .Inner | markdownify }}
+  </div>
+</div>
