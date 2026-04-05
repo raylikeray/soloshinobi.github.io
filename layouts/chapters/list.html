@@ -1,0 +1,13 @@
+{{ define "main" }}
+<section class="toc">
+  <header class="toc__section-header">
+    <h1>Chapters</h1>
+  </header>
+  {{ range sort .Pages "Params.chapter_number" "asc" }}
+    <a href="{{ .Permalink }}" class="toc__chapter">
+      <span class="toc__chapter-num">CH.{{ printf "%03d" .Params.chapter_number }}</span>
+      <span class="toc__chapter-title">{{ .Title }}</span>
+    </a>
+  {{ end }}
+</section>
+{{ end }}

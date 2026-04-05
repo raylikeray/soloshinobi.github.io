@@ -13,15 +13,16 @@
 
 <section class="toc">
   {{ range $bookNum := seq 1 3 }}
-    {{ $bookChapters := where $.Site.RegularPages "Section" "chapters" | where "Params.book" $bookNum }}
+    {{ $sectionChapters := where $.Site.RegularPages "Section" "chapters" }}
+    {{ $bookChapters := where $sectionChapters "Params.book" (int $bookNum) }}
     {{ if $bookChapters }}
       <div class="toc__book-header">
         <span class="toc__book-label">BOOK {{ cond (eq $bookNum 1) "ONE" (cond (eq $bookNum 2) "TWO" "THREE") }}</span>
         <div class="toc__book-line"></div>
       </div>
 
-      {{ range $arc := $.Site.Data.arcs }}
-        {{ if eq $arc.book $bookNum }}
+      {{ range $arc := hugo.Data.arcs }}
+        {{ if eq (int $arc.book) (int $bookNum) }}
           {{ $arcChapters := where $bookChapters "Params.arc" $arc.name }}
           {{ if $arcChapters }}
             <div class="toc__arc">
