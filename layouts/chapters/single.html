@@ -1,0 +1,32 @@
+{{ define "main" }}
+{{ $wordCount := countwords .Content }}
+{{ $readTime := div $wordCount 250 }}
+{{ if lt $readTime 1 }}{{ $readTime = 1 }}{{ end }}
+
+<article class="chapter">
+  <header class="chapter__header">
+    <div class="chapter__arc-label">BOOK {{ .Params.book }} — ARC: {{ upper .Params.arc }}</div>
+    <div class="chapter__number-row">
+      <div class="chapter__number-line chapter__number-line--left"></div>
+      <div class="chapter__number">CH.{{ printf "%03d" .Params.chapter_number }}</div>
+      <div class="chapter__number-line chapter__number-line--right"></div>
+    </div>
+    <h1 class="chapter__title">{{ .Title }}</h1>
+    <div class="chapter__meta">{{ lang.FormatNumber 0 $wordCount }} words · {{ $readTime }} min read</div>
+  </header>
+
+  <div class="chapter__divider"></div>
+
+  <div class="chapter__body">
+    {{ .Content }}
+  </div>
+
+  <div class="chapter__end">
+    <div class="chapter__end-line chapter__end-line--left"></div>
+    <div class="chapter__end-label">END</div>
+    <div class="chapter__end-line chapter__end-line--right"></div>
+  </div>
+</article>
+
+{{ partial "chapter-nav.html" . }}
+{{ end }}

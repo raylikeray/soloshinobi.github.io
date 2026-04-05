@@ -1,0 +1,28 @@
+{{ $chapters := where .Site.RegularPages "Section" "chapters" }}
+{{ $sorted := sort $chapters "Params.chapter_number" "asc" }}
+{{ $currentNum := .Params.chapter_number }}
+{{ $prev := false }}
+{{ $next := false }}
+
+{{ range $sorted }}
+  {{ if eq (int .Params.chapter_number) (sub (int $currentNum) 1) }}
+    {{ $prev = . }}
+  {{ end }}
+  {{ if eq (int .Params.chapter_number) (add (int $currentNum) 1) }}
+    {{ $next = . }}
+  {{ end }}
+{{ end }}
+
+<div class="chapter-nav">
+  {{ if $prev }}
+    <a href="{{ $prev.Permalink }}" class="chapter-nav__link">← {{ $prev.Title }}</a>
+  {{ else }}
+    <span class="chapter-nav__link chapter-nav__link--disabled">← NO PREVIOUS</span>
+  {{ end }}
+
+  {{ if $next }}
+    <a href="{{ $next.Permalink }}" class="chapter-nav__link chapter-nav__link--next">NEXT CHAPTER →</a>
+  {{ else }}
+    <span class="chapter-nav__link chapter-nav__link--disabled">AWAITING NEXT CHAPTER</span>
+  {{ end }}
+</div>
