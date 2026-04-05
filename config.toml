@@ -1,7 +1,6 @@
-baseURL = "https://soloshinobi.github.io/"
+baseURL = "https://raylikeray.github.io/soloshinobi.github.io/"
 languageCode = "en-us"
 title = "Solo Shinobi"
-theme = ""
 
 [params]
   tagline = "A Solo Leveling × Naruto Web Serial"
